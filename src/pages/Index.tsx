@@ -8,9 +8,15 @@ import { Input } from '@/components/ui/input';
 import { Progress } from '@/components/ui/progress';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Header } from '@/components/Navigation';
+import { ProgressCard } from '@/components/ProgressCard';
+import { StatsGrid } from '@/components/StatsGrid';
+import { useAuth } from '@/contexts/AuthContext';
+import { useProgress } from '@/hooks/useProgress';
 
 const Index = () => {
   const [activeTab, setActiveTab] = useState('roadmaps');
+  const { user } = useAuth();
+  const { enrollments, getRoadmapOverallProgress, getTotalTimeSpent, getCompletedItemsCount, enrollInRoadmap } = useProgress();
 
   const featuredRoadmaps = [
     {
@@ -170,6 +176,97 @@ const Index = () => {
         </div>
       </section>
 
+      {/* User Progress Section - Only shown when logged in */}
+      {user && (
+        <section className="py-16 px-4 bg-card/20">
+          <div className="container mx-auto">
+            <div className="mb-8">
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-2">
+                Welcome back, {user.user_metadata?.full_name || user.email?.split('@')[0]}! 
+              </h2>
+              <p className="text-muted-foreground text-lg">
+                Continue your learning journey and track your progress
+              </p>
+            </div>
+
+            {/* User Stats */}
+            <StatsGrid 
+              stats={[
+                {
+                  label: 'Time Spent',
+                  value: `${Math.round(getTotalTimeSpent() / 60)}h`,
+                  icon: Clock,
+                  color: 'bg-blue-500',
+                  trend: '+12%'
+                },
+                {
+                  label: 'Completed',
+                  value: `${getCompletedItemsCount()}`,
+                  icon: CheckCircle,
+                  color: 'bg-green-500',
+                  trend: '+5 this week'
+                },
+                {
+                  label: 'Enrolled',
+                  value: `${enrollments.length}`,
+                  icon: BookOpen,
+                  color: 'bg-purple-500'
+                },
+                {
+                  label: 'Streak',
+                  value: '7 days',
+                  icon: Zap,
+                  color: 'bg-orange-500',
+                  trend: 'Keep it up!'
+                }
+              ]}
+              className="mb-8"
+            />
+
+            {/* Progress Cards */}
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {enrollments.slice(0, 3).map((enrollment) => {
+                const roadmap = featuredRoadmaps.find(r => r.id === enrollment.roadmap_id);
+                if (!roadmap) return null;
+                
+                const progress = getRoadmapOverallProgress(enrollment.roadmap_id);
+                
+                return (
+                  <ProgressCard
+                    key={enrollment.id}
+                    title={roadmap.title}
+                    progress={progress}
+                    totalItems={roadmap.topics}
+                    completedItems={Math.round(roadmap.topics * progress / 100)}
+                    timeSpent="12h 30m"
+                    streak={7}
+                    onContinue={() => window.location.href = `/roadmaps/${roadmap.id}`}
+                  />
+                );
+              })}
+              
+              {enrollments.length === 0 && (
+                <Card className="bg-card/50 border-border/50 col-span-full">
+                  <CardContent className="p-8 text-center">
+                    <Target className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
+                    <h3 className="text-xl font-semibold text-foreground mb-2">Start Your First Learning Path</h3>
+                    <p className="text-muted-foreground mb-4">
+                      Choose from our curated roadmaps and begin your journey to tech mastery.
+                    </p>
+                    <Link to="/roadmaps">
+                      <Button variant="gradient">
+                        Browse Roadmaps
+                        <ArrowRight className="w-4 h-4 ml-2" />
+                      </Button>
+                    </Link>
+                  </CardContent>
+                </Card>
+              )}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Featured Content */}
       <section className="py-16 px-4">
         <div className="container mx-auto">
@@ -198,43 +295,71 @@ const Index = () => {
                 {featuredRoadmaps.map((roadmap) => {
                   const Icon = roadmap.icon;
                   return (
-                    <Link key={roadmap.id} to={`/roadmaps/${roadmap.id}`}>
-                      <Card className="bg-slate-800/50 border-slate-700 hover:bg-slate-800/70 transition-all duration-300 hover:scale-[1.02] group">
-                        <CardContent className="p-6">
-                          <div className="flex items-start justify-between mb-4">
-                            <div className={`w-16 h-16 bg-gradient-to-r ${roadmap.color} rounded-xl flex items-center justify-center`}>
-                              <Icon className="w-8 h-8 text-white" />
-                            </div>
+                  <Link key={roadmap.id} to={`/roadmaps/${roadmap.id}`}>
+                    <Card className="bg-slate-800/50 border-slate-700 hover:bg-slate-800/70 transition-all duration-300 hover:scale-[1.02] group relative">
+                      <CardContent className="p-6">
+                        <div className="flex items-start justify-between mb-4">
+                          <div className={`w-16 h-16 bg-gradient-to-r ${roadmap.color} rounded-xl flex items-center justify-center`}>
+                            <Icon className="w-8 h-8 text-white" />
+                          </div>
+                          <div className="flex flex-col items-end gap-2">
                             {roadmap.trending && (
                               <Badge className="bg-gradient-to-r from-orange-500/20 to-red-500/20 text-orange-300">
                                 <TrendingUp className="w-3 h-3 mr-1" />
                                 Trending
                               </Badge>
                             )}
+                            {user && (
+                              <Button
+                                size="sm"
+                                variant="outline"
+                                className="opacity-0 group-hover:opacity-100 transition-opacity"
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  e.stopPropagation();
+                                  enrollInRoadmap(roadmap.id);
+                                }}
+                              >
+                                {enrollments.some(e => e.roadmap_id === roadmap.id) ? 'Enrolled' : 'Enroll'}
+                              </Button>
+                            )}
                           </div>
-                          <h3 className="text-xl font-semibold text-white mb-2">{roadmap.title}</h3>
-                          <p className="text-slate-400 mb-4">{roadmap.description}</p>
-                          <div className="flex flex-wrap gap-2 mb-4">
-                            <Badge variant="outline" className="border-slate-600 text-slate-300">
-                              <BookOpen className="w-3 h-3 mr-1" />
-                              {roadmap.topics} Topics
-                            </Badge>
-                            <Badge variant="outline" className="border-slate-600 text-slate-300">
-                              <Clock className="w-3 h-3 mr-1" />
-                              {roadmap.duration}
-                            </Badge>
-                            <Badge variant="outline" className="border-slate-600 text-slate-300">
-                              <Users className="w-3 h-3 mr-1" />
-                              {roadmap.learners}
-                            </Badge>
+                        </div>
+                        <h3 className="text-xl font-semibold text-white mb-2">{roadmap.title}</h3>
+                        <p className="text-slate-400 mb-4">{roadmap.description}</p>
+                        
+                        {/* Progress bar for enrolled users */}
+                        {user && enrollments.some(e => e.roadmap_id === roadmap.id) && (
+                          <div className="mb-4">
+                            <div className="flex justify-between text-sm text-slate-300 mb-1">
+                              <span>Progress</span>
+                              <span>{getRoadmapOverallProgress(roadmap.id)}%</span>
+                            </div>
+                            <Progress value={getRoadmapOverallProgress(roadmap.id)} className="h-2" />
                           </div>
-                          <div className="flex items-center justify-between">
-                            <span className="text-sm text-slate-400">{roadmap.difficulty}</span>
-                            <ChevronRight className="w-5 h-5 text-slate-400 group-hover:text-white transition-colors" />
-                          </div>
-                        </CardContent>
-                      </Card>
-                    </Link>
+                        )}
+                        
+                        <div className="flex flex-wrap gap-2 mb-4">
+                          <Badge variant="outline" className="border-slate-600 text-slate-300">
+                            <BookOpen className="w-3 h-3 mr-1" />
+                            {roadmap.topics} Topics
+                          </Badge>
+                          <Badge variant="outline" className="border-slate-600 text-slate-300">
+                            <Clock className="w-3 h-3 mr-1" />
+                            {roadmap.duration}
+                          </Badge>
+                          <Badge variant="outline" className="border-slate-600 text-slate-300">
+                            <Users className="w-3 h-3 mr-1" />
+                            {roadmap.learners}
+                          </Badge>
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <span className="text-sm text-slate-400">{roadmap.difficulty}</span>
+                          <ChevronRight className="w-5 h-5 text-slate-400 group-hover:text-white transition-colors" />
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </Link>
                   );
                 })}
               </div>
