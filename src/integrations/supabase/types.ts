@@ -14,7 +14,102 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      learning_progress: {
+        Row: {
+          completed_at: string | null
+          created_at: string | null
+          id: string
+          last_accessed: string | null
+          progress_percentage: number | null
+          roadmap_id: string
+          streak_days: number | null
+          time_spent_minutes: number | null
+          topic_id: string | null
+          updated_at: string | null
+          user_id: string
+        }
+        Insert: {
+          completed_at?: string | null
+          created_at?: string | null
+          id?: string
+          last_accessed?: string | null
+          progress_percentage?: number | null
+          roadmap_id: string
+          streak_days?: number | null
+          time_spent_minutes?: number | null
+          topic_id?: string | null
+          updated_at?: string | null
+          user_id: string
+        }
+        Update: {
+          completed_at?: string | null
+          created_at?: string | null
+          id?: string
+          last_accessed?: string | null
+          progress_percentage?: number | null
+          roadmap_id?: string
+          streak_days?: number | null
+          time_spent_minutes?: number | null
+          topic_id?: string | null
+          updated_at?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          bio: string | null
+          created_at: string | null
+          email: string | null
+          full_name: string | null
+          id: string
+          updated_at: string | null
+        }
+        Insert: {
+          avatar_url?: string | null
+          bio?: string | null
+          created_at?: string | null
+          email?: string | null
+          full_name?: string | null
+          id: string
+          updated_at?: string | null
+        }
+        Update: {
+          avatar_url?: string | null
+          bio?: string | null
+          created_at?: string | null
+          email?: string | null
+          full_name?: string | null
+          id?: string
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      user_enrollments: {
+        Row: {
+          enrolled_at: string | null
+          id: string
+          roadmap_id: string
+          status: string | null
+          user_id: string
+        }
+        Insert: {
+          enrolled_at?: string | null
+          id?: string
+          roadmap_id: string
+          status?: string | null
+          user_id: string
+        }
+        Update: {
+          enrolled_at?: string | null
+          id?: string
+          roadmap_id?: string
+          status?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
