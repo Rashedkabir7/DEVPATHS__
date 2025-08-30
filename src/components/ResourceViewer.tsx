@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { ExternalLink, Maximize2, Minimize2, RefreshCw, ArrowLeft, ArrowRight, Home } from 'lucide-react';
 import { toast } from 'sonner';
@@ -60,6 +60,9 @@ export const ResourceViewer: React.FC<ResourceViewerProps> = ({ resource, isOpen
             <DialogTitle className="text-lg font-semibold truncate pr-4">
               {resource.title}
             </DialogTitle>
+            <DialogDescription className="sr-only">
+              Resource viewer for {resource.title} from {resource.platform}
+            </DialogDescription>
             <div className="flex items-center gap-2 mt-1 text-sm text-muted-foreground">
               <span className="inline-flex items-center px-2 py-1 rounded-md bg-primary/10 text-primary text-xs font-medium">
                 {resource.platform}
@@ -134,10 +137,19 @@ export const ResourceViewer: React.FC<ResourceViewerProps> = ({ resource, isOpen
             onError={() => {
               toast.error('Failed to load resource. You can open it in a new tab instead.');
             }}
+            onLoad={() => {
+              const loadingOverlay = document.getElementById('loading-overlay');
+              if (loadingOverlay) {
+                loadingOverlay.style.opacity = '0';
+                setTimeout(() => {
+                  loadingOverlay.style.display = 'none';
+                }, 300);
+              }
+            }}
           />
           
           {/* Loading overlay */}
-          <div className="absolute inset-0 bg-background/80 flex items-center justify-center pointer-events-none opacity-0 transition-opacity duration-300" id="loading-overlay">
+          <div className="absolute inset-0 bg-background/80 flex items-center justify-center pointer-events-none opacity-100 transition-opacity duration-300" id="loading-overlay">
             <div className="flex flex-col items-center gap-4">
               <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
               <p className="text-sm text-muted-foreground">Loading resource...</p>
