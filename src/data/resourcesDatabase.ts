@@ -2038,6 +2038,431 @@ export const resourcesDatabase: Record<string, Resource[]> = {
       author: 'Tech Dummies',
       tags: ['caching', 'redis', 'memcached', 'performance']
     }
+  ],
+
+  'golang': [
+    {
+      id: 'golang-official-tour',
+      title: 'A Tour of Go',
+      description: 'Official interactive introduction to the Go programming language',
+      url: 'https://tour.golang.org/',
+      type: 'tutorial',
+      platform: 'Go',
+      difficulty: 'Beginner',
+      duration: '3-4 hours',
+      free: true,
+      rating: 4.9,
+      views: '2M+',
+      tags: ['golang', 'programming', 'interactive', 'official']
+    },
+    {
+      id: 'golang-docs',
+      title: 'Go Documentation',
+      description: 'Complete Go programming language documentation',
+      url: 'https://golang.org/doc/',
+      type: 'documentation',
+      platform: 'Go',
+      difficulty: 'Beginner',
+      duration: '10+ hours read',
+      free: true,
+      rating: 4.8,
+      views: '5M+',
+      tags: ['golang', 'documentation', 'reference', 'official']
+    },
+    {
+      id: 'golang-web-development',
+      title: 'Go Web Development',
+      description: 'Build web applications and APIs with Go',
+      url: 'https://www.youtube.com/watch?v=YS4e4q9oBaU',
+      type: 'video',
+      platform: 'YouTube',
+      difficulty: 'Intermediate',
+      duration: '8 hours',
+      free: true,
+      rating: 4.7,
+      views: '1M+',
+      author: 'freeCodeCamp',
+      tags: ['golang', 'web-development', 'api', 'backend']
+    },
+    {
+      id: 'golang-by-example',
+      title: 'Go by Example',
+      description: 'Hands-on introduction to Go using annotated example programs',
+      url: 'https://gobyexample.com/',
+      type: 'tutorial',
+      platform: 'Go by Example',
+      difficulty: 'Beginner',
+      duration: '5+ hours',
+      free: true,
+      rating: 4.8,
+      views: '3M+',
+      tags: ['golang', 'examples', 'tutorial', 'hands-on']
+    }
+  ],
+
+  'rust': [
+    {
+      id: 'rust-book',
+      title: 'The Rust Programming Language Book',
+      description: 'Official comprehensive guide to Rust programming',
+      url: 'https://doc.rust-lang.org/book/',
+      type: 'book',
+      platform: 'Rust',
+      difficulty: 'Beginner',
+      duration: '20+ hours read',
+      free: true,
+      rating: 4.9,
+      views: '2M+',
+      tags: ['rust', 'programming', 'systems', 'official']
+    },
+    {
+      id: 'rustlings',
+      title: 'Rustlings - Interactive Rust Exercises',
+      description: 'Small exercises to get you used to reading and writing Rust code',
+      url: 'https://github.com/rust-lang/rustlings',
+      type: 'interactive',
+      platform: 'GitHub',
+      difficulty: 'Beginner',
+      duration: '10+ hours',
+      free: true,
+      rating: 4.8,
+      views: '1M+',
+      tags: ['rust', 'exercises', 'interactive', 'practice']
+    },
+    {
+      id: 'rust-web-development',
+      title: 'Rust Web Development',
+      description: 'Build web applications and APIs with Rust',
+      url: 'https://www.youtube.com/watch?v=yQWDg_HW8cU',
+      type: 'video',
+      platform: 'YouTube',
+      difficulty: 'Intermediate',
+      duration: '6 hours',
+      free: true,
+      rating: 4.7,
+      views: '500K+',
+      author: 'Let\'s Get Rusty',
+      tags: ['rust', 'web-development', 'actix', 'warp']
+    }
+  ],
+
+  'kotlin': [
+    {
+      id: 'kotlin-docs',
+      title: 'Kotlin Documentation',
+      description: 'Official Kotlin programming language documentation',
+      url: 'https://kotlinlang.org/docs/',
+      type: 'documentation',
+      platform: 'Kotlin',
+      difficulty: 'Beginner',
+      duration: '8+ hours read',
+      free: true,
+      rating: 4.8,
+      views: '3M+',
+      tags: ['kotlin', 'programming', 'android', 'jvm']
+    },
+    {
+      id: 'kotlin-android-development',
+      title: 'Android Development with Kotlin',
+      description: 'Build Android apps using Kotlin programming language',
+      url: 'https://developer.android.com/kotlin',
+      type: 'tutorial',
+      platform: 'Android Developers',
+      difficulty: 'Intermediate',
+      duration: '12+ hours',
+      free: true,
+      rating: 4.7,
+      views: '2M+',
+      tags: ['kotlin', 'android', 'mobile', 'app-development']
+    },
+    {
+      id: 'kotlin-multiplatform',
+      title: 'Kotlin Multiplatform Mobile',
+      description: 'Share code between Android and iOS with Kotlin Multiplatform',
+      url: 'https://kotlinlang.org/lp/mobile/',
+      type: 'documentation',
+      platform: 'Kotlin',
+      difficulty: 'Advanced',
+      duration: '6+ hours read',
+      free: true,
+      rating: 4.6,
+      views: '800K+',
+      tags: ['kotlin', 'multiplatform', 'mobile', 'cross-platform']
+    }
+  ],
+
+  'swift': [
+    {
+      id: 'swift-docs',
+      title: 'The Swift Programming Language',
+      description: 'Official comprehensive guide to Swift programming',
+      url: 'https://docs.swift.org/swift-book/',
+      type: 'book',
+      platform: 'Swift',
+      difficulty: 'Beginner',
+      duration: '15+ hours read',
+      free: true,
+      rating: 4.8,
+      views: '2M+',
+      tags: ['swift', 'programming', 'ios', 'apple']
+    },
+    {
+      id: 'swiftui-tutorial',
+      title: 'SwiftUI Tutorial',
+      description: 'Learn SwiftUI for iOS app development',
+      url: 'https://developer.apple.com/tutorials/swiftui',
+      type: 'tutorial',
+      platform: 'Apple Developer',
+      difficulty: 'Intermediate',
+      duration: '8+ hours',
+      free: true,
+      rating: 4.7,
+      views: '1.5M+',
+      tags: ['swiftui', 'ios', 'ui', 'apple']
+    },
+    {
+      id: 'ios-app-development',
+      title: 'iOS App Development with Swift',
+      description: 'Complete iOS development course using Swift',
+      url: 'https://cs193p.sites.stanford.edu/',
+      type: 'course',
+      platform: 'Stanford',
+      difficulty: 'Intermediate',
+      duration: '40+ hours',
+      free: true,
+      rating: 4.9,
+      views: '1M+',
+      author: 'Stanford University',
+      tags: ['swift', 'ios', 'stanford', 'app-development']
+    }
+  ],
+
+  'flutter': [
+    {
+      id: 'flutter-docs',
+      title: 'Flutter Documentation',
+      description: 'Official Flutter framework documentation',
+      url: 'https://flutter.dev/docs',
+      type: 'documentation',
+      platform: 'Flutter',
+      difficulty: 'Beginner',
+      duration: '10+ hours read',
+      free: true,
+      rating: 4.8,
+      views: '5M+',
+      tags: ['flutter', 'mobile', 'cross-platform', 'dart']
+    },
+    {
+      id: 'flutter-codelabs',
+      title: 'Flutter Codelabs',
+      description: 'Hands-on coding experiences for Flutter',
+      url: 'https://flutter.dev/docs/codelabs',
+      type: 'tutorial',
+      platform: 'Flutter',
+      difficulty: 'Beginner',
+      duration: '4+ hours',
+      free: true,
+      rating: 4.7,
+      views: '2M+',
+      tags: ['flutter', 'codelabs', 'hands-on', 'tutorial']
+    },
+    {
+      id: 'flutter-complete-course',
+      title: 'Flutter Complete Course',
+      description: 'Build cross-platform mobile apps with Flutter & Dart',
+      url: 'https://www.youtube.com/watch?v=VPvVD8t02U8',
+      type: 'video',
+      platform: 'YouTube',
+      difficulty: 'Beginner',
+      duration: '37 hours',
+      free: true,
+      rating: 4.8,
+      views: '3M+',
+      author: 'freeCodeCamp',
+      tags: ['flutter', 'dart', 'mobile', 'complete-course']
+    }
+  ],
+
+  'dart': [
+    {
+      id: 'dart-language-tour',
+      title: 'Dart Language Tour',
+      description: 'Official introduction to the Dart programming language',
+      url: 'https://dart.dev/guides/language/language-tour',
+      type: 'tutorial',
+      platform: 'Dart',
+      difficulty: 'Beginner',
+      duration: '4+ hours read',
+      free: true,
+      rating: 4.7,
+      views: '1M+',
+      tags: ['dart', 'programming', 'language', 'flutter']
+    },
+    {
+      id: 'dartpad',
+      title: 'DartPad - Try Dart Online',
+      description: 'Online editor for Dart programming language',
+      url: 'https://dartpad.dev/',
+      type: 'tool',
+      platform: 'Dart',
+      difficulty: 'Beginner',
+      duration: '30 min setup',
+      free: true,
+      rating: 4.6,
+      views: '2M+',
+      tags: ['dart', 'online-editor', 'practice', 'tool']
+    }
+  ],
+
+  'blockchain': [
+    {
+      id: 'solidity-docs',
+      title: 'Solidity Documentation',
+      description: 'Official Solidity smart contract programming language docs',
+      url: 'https://docs.soliditylang.org/',
+      type: 'documentation',
+      platform: 'Solidity',
+      difficulty: 'Intermediate',
+      duration: '8+ hours read',
+      free: true,
+      rating: 4.7,
+      views: '1M+',
+      tags: ['solidity', 'smart-contracts', 'ethereum', 'blockchain']
+    },
+    {
+      id: 'ethereum-docs',
+      title: 'Ethereum Development Documentation',
+      description: 'Complete guide to Ethereum blockchain development',
+      url: 'https://ethereum.org/en/developers/docs/',
+      type: 'documentation',
+      platform: 'Ethereum',
+      difficulty: 'Intermediate',
+      duration: '12+ hours read',
+      free: true,
+      rating: 4.8,
+      views: '2M+',
+      tags: ['ethereum', 'blockchain', 'web3', 'dapp']
+    },
+    {
+      id: 'web3-development',
+      title: 'Web3 Development Bootcamp',
+      description: 'Learn to build decentralized applications',
+      url: 'https://www.youtube.com/watch?v=gyMwXuJrbJQ',
+      type: 'video',
+      platform: 'YouTube',
+      difficulty: 'Intermediate',
+      duration: '32 hours',
+      free: true,
+      rating: 4.6,
+      views: '800K+',
+      author: 'freeCodeCamp',
+      tags: ['web3', 'blockchain', 'solidity', 'dapp']
+    }
+  ],
+
+  'game-development': [
+    {
+      id: 'unity-learn',
+      title: 'Unity Learn Platform',
+      description: 'Official Unity game development learning platform',
+      url: 'https://learn.unity.com/',
+      type: 'course',
+      platform: 'Unity',
+      difficulty: 'Beginner',
+      duration: '50+ hours',
+      free: true,
+      rating: 4.8,
+      views: '3M+',
+      tags: ['unity', 'game-development', '3d', 'c-sharp']
+    },
+    {
+      id: 'unreal-engine-docs',
+      title: 'Unreal Engine Documentation',
+      description: 'Complete Unreal Engine game development documentation',
+      url: 'https://docs.unrealengine.com/',
+      type: 'documentation',
+      platform: 'Unreal Engine',
+      difficulty: 'Intermediate',
+      duration: '20+ hours read',
+      free: true,
+      rating: 4.7,
+      views: '2M+',
+      tags: ['unreal-engine', 'game-development', '3d', 'cpp']
+    },
+    {
+      id: 'godot-docs',
+      title: 'Godot Engine Documentation',
+      description: 'Free and open-source game engine documentation',
+      url: 'https://docs.godotengine.org/',
+      type: 'documentation',
+      platform: 'Godot',
+      difficulty: 'Beginner',
+      duration: '15+ hours read',
+      free: true,
+      rating: 4.7,
+      views: '1M+',
+      tags: ['godot', 'game-development', 'open-source', 'gdscript']
+    },
+    {
+      id: 'game-development-patterns',
+      title: 'Game Programming Patterns',
+      description: 'Essential design patterns for game development',
+      url: 'https://gameprogrammingpatterns.com/',
+      type: 'book',
+      platform: 'Game Programming Patterns',
+      difficulty: 'Advanced',
+      duration: '12+ hours read',
+      free: true,
+      rating: 4.9,
+      views: '500K+',
+      author: 'Robert Nystrom',
+      tags: ['game-development', 'patterns', 'architecture', 'design']
+    }
+  ],
+
+  'devops-advanced': [
+    {
+      id: 'kubernetes-docs',
+      title: 'Kubernetes Documentation',
+      description: 'Official Kubernetes container orchestration documentation',
+      url: 'https://kubernetes.io/docs/',
+      type: 'documentation',
+      platform: 'Kubernetes',
+      difficulty: 'Advanced',
+      duration: '15+ hours read',
+      free: true,
+      rating: 4.8,
+      views: '3M+',
+      tags: ['kubernetes', 'containers', 'orchestration', 'devops']
+    },
+    {
+      id: 'terraform-docs',
+      title: 'Terraform Documentation',
+      description: 'Infrastructure as Code with Terraform',
+      url: 'https://www.terraform.io/docs',
+      type: 'documentation',
+      platform: 'Terraform',
+      difficulty: 'Intermediate',
+      duration: '8+ hours read',
+      free: true,
+      rating: 4.7,
+      views: '2M+',
+      tags: ['terraform', 'infrastructure', 'iac', 'cloud']
+    },
+    {
+      id: 'ansible-docs',
+      title: 'Ansible Documentation',
+      description: 'Automation and configuration management with Ansible',
+      url: 'https://docs.ansible.com/',
+      type: 'documentation',
+      platform: 'Ansible',
+      difficulty: 'Intermediate',
+      duration: '6+ hours read',
+      free: true,
+      rating: 4.6,
+      views: '1.5M+',
+      tags: ['ansible', 'automation', 'configuration', 'devops']
+    }
   ]
 };
 
